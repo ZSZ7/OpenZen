@@ -38,8 +38,6 @@ import shit.zen.patch.MinecraftPatch;
 import shit.zen.patch.PacketUtilsPatch;
 import shit.zen.patch.PlayerPatch;
 import shit.zen.patch.PlayerTabOverlayPatch;
-import shit.zen.patch.TimerPatch;
-import shit.zen.utils.misc.Encryption;
 import shit.zen.utils.rotation.RotationHandler;
 
 @Mod(value = "hey")
@@ -64,7 +62,6 @@ public class ZenClient extends ClientBase {
     private HudManager hudManager;
     private LagManager lagManager;
     private TargetManager targetManager;
-    private Encryption encryption;
     private int reconnectAttempts;
 
     public ZenClient() {
@@ -88,15 +85,13 @@ public class ZenClient extends ClientBase {
             this.moduleManager = new ModuleManager();
             this.hudManager = new HudManager();
             this.commandManager = new CommandManager();
-            this.commandManager.initCommands();
             this.configManager = new ConfigManager();
-            this.configManager.loadAll();
             this.lagManager = new LagManager();
-            this.eventBus.register(this.lagManager);
             this.targetManager = new TargetManager();
+            this.eventBus.register(this.lagManager);
             this.eventBus.register(this.targetManager);
             this.eventBus.register(this);
-            this.encryption = new Encryption(Encryption.Algorithm.AES);
+            this.commandManager.initCommands();
             registerPatches();
             if (PatchAgent.getInstrumentation() != null) {
                 PatchAgent.installPatchesAndRetransform();
@@ -117,6 +112,7 @@ public class ZenClient extends ClientBase {
         if (isReady() && !moduleInit) {
             moduleInit = true;
             this.moduleManager.initModules();
+            this.configManager.loadAll();
         }
     }
 
@@ -131,10 +127,10 @@ public class ZenClient extends ClientBase {
     }
 
     public static boolean isOwner(String username) {
-        return false;
+        return true;
     }
 
-    public void disconnectFromServer() {
+    public void shutdown() {
         isReady = false;
         if (this.configManager != null) {
             this.configManager.saveAll();

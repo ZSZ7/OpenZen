@@ -1,6 +1,6 @@
 # Open Zen [WIP]
 
-> 截止至目前，Open Zen仍然处于早期构建阶段。大量特性可能仍不可用，请谅解！
+> 截止至目前，Open Zen仍然处于早期构建阶段。大量特性可能仍不可用，请谅解！当您发现有不可用的功能，欢迎开Issues描述或直接提交Pull Request，我们将不胜感激！
 
 **Open Zen** 是 *Zen* Minecraft 客户端的反混淆源码版本，几乎是由 [Claude](https://claude.com/)协助逆向得到。目标版本为 **Minecraft 1.20.1 + Forge 47.4.20**。
 
