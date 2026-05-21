@@ -41,8 +41,8 @@ implements SettingRenderer {
             boolean hovered = mouseX >= x && mouseX <= x + width && mouseY >= optionY && mouseY <= optionY + rowHeight;
             this.updateAnimation(this.hoverAnimations, option, hovered, 0.28f);
             this.updateAnimation(this.selectedAnimations, option, selected, 0.25f);
-            float hoverAmount = this.hoverAnimations.getOrDefault(option, Float.valueOf(0.0f)).floatValue();
-            float selectedAmount = this.selectedAnimations.getOrDefault(option, Float.valueOf(0.0f)).floatValue();
+            float hoverAmount = this.hoverAnimations.getOrDefault(option, 0.0f).floatValue();
+            float selectedAmount = this.selectedAnimations.getOrDefault(option, 0.0f).floatValue();
             int boxX = x + width - boxSize - rightPadding;
             int boxY = optionY + (rowHeight - boxSize) / 2;
             if (selectedAmount > 0.01f) {
@@ -70,10 +70,10 @@ implements SettingRenderer {
     }
 
     private void updateAnimation(Map<String, Float> map, String key, boolean target, float speed) {
-        float current = map.getOrDefault(key, Float.valueOf(0.0f)).floatValue();
+        float current = map.getOrDefault(key, 0.0f).floatValue();
         float targetValue = target ? 1.0f : 0.0f;
         current = Math.abs(targetValue - current) > 0.01f ? LerpUtil.smoothLerp(current, targetValue, speed) : targetValue;
-        map.put(key, Float.valueOf(current));
+        map.put(key, current);
     }
 
     @Override

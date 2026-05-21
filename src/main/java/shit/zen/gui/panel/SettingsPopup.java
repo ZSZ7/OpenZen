@@ -44,8 +44,8 @@ extends ClientBase {
         this.scaleChangeCallback = scaleChangeCallback;
         this.dropdownOpen.put("language", false);
         this.dropdownOpen.put("scale", false);
-        this.dropdownAlpha.put("language", Float.valueOf(0.0f));
-        this.dropdownAlpha.put("scale", Float.valueOf(0.0f));
+        this.dropdownAlpha.put("language", 0.0f);
+        this.dropdownAlpha.put("scale", 0.0f);
         this.dropdownItemHover.put("language", new HashMap<>());
         this.dropdownItemHover.put("scale", new HashMap<>());
     }
@@ -137,7 +137,7 @@ extends ClientBase {
         int dropdownX = (int)((float)(popupX + popupWidth - dropdownWidth) - 15.0f * scale);
         int dropdownHeaderHeight = (int)(20.0f * scale);
         int itemHeight = (int)(18.0f * scale);
-        float openFactor = this.dropdownAlpha.getOrDefault(key, Float.valueOf(0.0f)).floatValue();
+        float openFactor = this.dropdownAlpha.getOrDefault(key, 0.0f).floatValue();
         String[] filteredItems = this.filterDropdownItems(items, selectedValue);
         int expandedHeight = (int)((float)(filteredItems.length * itemHeight) * openFactor);
         RenderUtil.drawRoundedRect(guiGraphics.pose(), dropdownX, rowY, dropdownWidth, dropdownHeaderHeight + expandedHeight, 4.0f * scale, this.applyAlpha(POPUP_BG_COLOR.getRGB(), openAlpha));
@@ -305,10 +305,10 @@ extends ClientBase {
     private void updateDropdownAlpha() {
         for (String key : this.dropdownOpen.keySet()) {
             boolean open = this.dropdownOpen.getOrDefault(key, false);
-            float current = this.dropdownAlpha.getOrDefault(key, Float.valueOf(0.0f)).floatValue();
+            float current = this.dropdownAlpha.getOrDefault(key, 0.0f).floatValue();
             float target = open ? 1.0f : 0.0f;
             current = Math.abs(current - target) > 0.01f ? LerpUtil.smoothLerp(current, target, 0.22f) : target;
-            this.dropdownAlpha.put(key, Float.valueOf(current));
+            this.dropdownAlpha.put(key, current);
         }
     }
 
@@ -330,10 +330,10 @@ extends ClientBase {
     }
 
     private void updateItemHover(Map<String, Float> hoverMap, String key, boolean hovered) {
-        float current = hoverMap.getOrDefault(key, Float.valueOf(0.0f)).floatValue();
+        float current = hoverMap.getOrDefault(key, 0.0f).floatValue();
         float target = hovered ? 1.0f : 0.0f;
         current = Math.abs(current - target) > 0.01f ? LerpUtil.smoothLerp(current, target, 0.28f) : target;
-        hoverMap.put(key, Float.valueOf(current));
+        hoverMap.put(key, current);
     }
 
     private String[] filterDropdownItems(String[] items, String selectedValue) {
@@ -353,8 +353,8 @@ extends ClientBase {
     private int calculatePopupHeight(float scale) {
         float baseHeight = 200.0f * scale;
         float itemHeight = 18.0f * scale;
-        float langExpanded = (float)this.filterDropdownItems(LANGUAGES, this.selectedLanguage).length * itemHeight * this.dropdownAlpha.getOrDefault("language", Float.valueOf(0.0f)).floatValue();
-        float scaleExpanded = (float)this.filterDropdownItems(SCALES, this.selectedScale).length * itemHeight * this.dropdownAlpha.getOrDefault("scale", Float.valueOf(0.0f)).floatValue();
+        float langExpanded = (float)this.filterDropdownItems(LANGUAGES, this.selectedLanguage).length * itemHeight * this.dropdownAlpha.getOrDefault("language", 0.0f).floatValue();
+        float scaleExpanded = (float)this.filterDropdownItems(SCALES, this.selectedScale).length * itemHeight * this.dropdownAlpha.getOrDefault("scale", 0.0f).floatValue();
         return (int)(baseHeight + langExpanded + scaleExpanded);
     }
 

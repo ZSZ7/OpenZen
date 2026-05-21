@@ -13,7 +13,7 @@ import shit.zen.event.EventTarget;
 public class AutoPlay
 extends Module {
     public static AutoPlay instance;
-    private final NumberSetting delay = new NumberSetting("Delay", Double.valueOf(2.0), Double.valueOf(0.0), Double.valueOf(10.0), Double.valueOf(0.1));
+    private final NumberSetting delay = new NumberSetting("Delay", 2.0, 0.0, 10.0, 0.1);
     public long disconnectTime = -1L;
     public boolean pendingDisconnect = false;
     public long reconnectTime = -1L;

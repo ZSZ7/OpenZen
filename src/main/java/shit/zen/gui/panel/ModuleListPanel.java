@@ -199,12 +199,12 @@ extends ClientBase {
 
     private void updateModuleHover(Module module, int rowX, int rowY, int mouseX, int mouseY, float scale) {
         if (module.isEnabled()) {
-            this.hoverAnimations.put(module, Float.valueOf(0.0f));
+            this.hoverAnimations.put(module, 0.0f);
             return;
         }
-        float current = this.hoverAnimations.getOrDefault(module, Float.valueOf(0.0f)).floatValue();
+        float current = this.hoverAnimations.getOrDefault(module, 0.0f).floatValue();
         boolean hovered = this.isMouseOverModule(module, rowX, rowY, mouseX, mouseY, scale);
-        this.hoverAnimations.put(module, Float.valueOf(LerpUtil.lerp(current, hovered ? 1.0f : 0.0f, 0.12f)));
+        this.hoverAnimations.put(module, LerpUtil.lerp(current, hovered ? 1.0f : 0.0f, 0.12f));
     }
 
     private int applyAlpha(int color, float alpha) {
@@ -260,7 +260,7 @@ extends ClientBase {
                         TextGlow.drawGlowText(bindName, bindX + iconWidth + spacing, drawY - 2.0f, moduleFont, textColor, glowColor, 8.0f * scale);
                     }
                 } else {
-                    float hoverAmount = this.hoverAnimations.getOrDefault(module, Float.valueOf(0.0f)).floatValue();
+                    float hoverAmount = this.hoverAnimations.getOrDefault(module, 0.0f).floatValue();
                     int rFrom = 170;
                     int gFrom = 170;
                     int bFrom = 170;

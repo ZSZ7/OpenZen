@@ -13,9 +13,9 @@ import shit.zen.settings.impl.NumberSetting;
 public class OldHitting
 extends Module {
     private final ModeSetting animationModeSetting = new ModeSetting("Animation", "Vanilla", "Leaked", "Slide").withDefault("Leaked");
-    private final NumberSetting sizeSetting = new NumberSetting("Size", Double.valueOf(1.0), Double.valueOf(0.1), Double.valueOf(3.0), Double.valueOf(0.1));
-    private final NumberSetting speedSetting = new NumberSetting("Speed", Double.valueOf(1.0), Double.valueOf(0.1), Double.valueOf(5.0), Double.valueOf(0.1));
-    private final NumberSetting yOffsetSetting = new NumberSetting("Y-Offset", Double.valueOf(0.0), Double.valueOf(-1.0), Double.valueOf(1.0), Double.valueOf(0.1));
+    private final NumberSetting sizeSetting = new NumberSetting("Size", 1.0, 0.1, 3.0, 0.1);
+    private final NumberSetting speedSetting = new NumberSetting("Speed", 1.0, 0.1, 5.0, 0.1);
+    private final NumberSetting yOffsetSetting = new NumberSetting("Y-Offset", 0.0, -1.0, 1.0, 0.1);
     public static OldHitting INSTANCE;
 
     public OldHitting() {

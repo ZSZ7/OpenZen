@@ -104,7 +104,7 @@ extends HudElement {
             this.removing = false;
         }
 
-        public void Đ(KeyBindsHud.KeyBindEntry e) {
+        public void update(KeyBindsHud.KeyBindEntry e) {
             this.entry = e;
             this.name = e != null ? e.name : this.module.getName();
             this.key = e != null ? e.key : this.module.getBind().getName();
@@ -198,7 +198,7 @@ extends HudElement {
             KeyBindsHud.KeyBindRow existing = this.removedRows.get(e.getKey());
             if (existing != null) {
                 if (existing.removing) existing.cancelRemove();
-                existing.Đ(e.getValue());
+                existing.update(e.getValue());
                 continue;
             }
             this.rowList.add(new KeyBindsHud.KeyBindRow(this, e.getKey(), e.getValue()));

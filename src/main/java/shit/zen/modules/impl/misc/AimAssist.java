@@ -21,14 +21,14 @@ import shit.zen.event.EventTarget;
 
 public class AimAssist
 extends Module {
-    private final NumberSetting randomYawOffset = new NumberSetting("Random Yaw Offset", Integer.valueOf(2), Integer.valueOf(0), Integer.valueOf(10), Double.valueOf(0.01));
-    private final NumberSetting randomPitchOffset = new NumberSetting("Random Pitch Offset", Float.valueOf(0.075f), Integer.valueOf(0), Integer.valueOf(1), Double.valueOf(0.01));
-    private final NumberSetting range = new NumberSetting("Range", Integer.valueOf(5), Integer.valueOf(3), Integer.valueOf(30), Double.valueOf(0.1));
-    private final NumberSetting fov = new NumberSetting("Fov", Integer.valueOf(120), Integer.valueOf(1), Integer.valueOf(360), Integer.valueOf(1));
+    private final NumberSetting randomYawOffset = new NumberSetting("Random Yaw Offset", 2, 0, 10, 0.01);
+    private final NumberSetting randomPitchOffset = new NumberSetting("Random Pitch Offset", 0.075f, 0, 1, 0.01);
+    private final NumberSetting range = new NumberSetting("Range", 5, 3, 30, 0.1);
+    private final NumberSetting fov = new NumberSetting("Fov", 120, 1, 360, 1);
     private final BooleanSetting mouseDown = new BooleanSetting("Mouse down", true);
     private final BooleanSetting adaptive = new BooleanSetting("Adaptive", true);
-    private final NumberSetting adaptiveOffset = new NumberSetting("Adaptive Offset", Integer.valueOf(3), Float.valueOf(0.1f), Float.valueOf(15.0f), Double.valueOf(0.01));
-    private final NumberSetting smoothAmount = new NumberSetting("Smooth amount", Integer.valueOf(15), Float.valueOf(1.0f), Float.valueOf(90.0f), Double.valueOf(0.1));
+    private final NumberSetting adaptiveOffset = new NumberSetting("Adaptive Offset", 3, 0.1f, 15.0f, 0.01);
+    private final NumberSetting smoothAmount = new NumberSetting("Smooth amount", 15, 1.0f, 90.0f, 0.1);
     private final BooleanSetting breakBlock = new BooleanSetting("Break Block", true);
     private Vec3 targetOffset;
     private Vec3 aimOffset;
@@ -129,7 +129,7 @@ extends Module {
     }
 
     private void applyRotation(Rotation rotation) {
-        rotation.snapToSensitivity(Float.valueOf((float) mc.options.sensitivity().get().doubleValue()));
+        rotation.snapToSensitivity((float) mc.options.sensitivity().get().doubleValue());
         float yaw = rotation.getYaw();
         float pitch = rotation.getPitch();
         mc.player.setXRot(pitch);

@@ -43,7 +43,7 @@ public class ESP extends Module {
 
     public record Pair<A, B>(A first, B second) {
 
-        public static <A, B> Pair<A, B> Đ(A a, B b) {
+        public static <A, B> Pair<A, B> of(A a, B b) {
                 return new Pair<>(a, b);
             }
         }
@@ -148,7 +148,7 @@ public class ESP extends Module {
             }
             int pad = 3;
             Vector4d box = new Vector4d((int) (minX - pad), (int) (minY - pad), (int) (maxX - minX + pad * 2), (int) (maxY - minY + pad * 2));
-            this.entityBoxPositions.put(entity, Pair.Đ(box, true));
+            this.entityBoxPositions.put(entity, Pair.of(box, true));
         }
     }
 

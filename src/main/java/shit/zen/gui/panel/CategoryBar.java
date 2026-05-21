@@ -61,16 +61,16 @@ extends ClientBase {
     }
 
     private void updateCategoryHover(Category category, int iconX, int iconY, int mouseX, int mouseY, int iconSize) {
-        float current = this.hoverAnimations.getOrDefault(category, Float.valueOf(0.0f)).floatValue();
+        float current = this.hoverAnimations.getOrDefault(category, 0.0f).floatValue();
         boolean hovered = this.isMouseOverCategory(iconX, iconY, mouseX, mouseY, iconSize);
-        this.hoverAnimations.put(category, Float.valueOf(LerpUtil.lerp(current, hovered ? 1.0f : 0.0f, 0.12f)));
+        this.hoverAnimations.put(category, LerpUtil.lerp(current, hovered ? 1.0f : 0.0f, 0.12f));
     }
 
     private int getCategoryColor(Category category) {
         if (category == this.selectedCategory) {
             return -1;
         }
-        float hoverAmount = this.hoverAnimations.getOrDefault(category, Float.valueOf(0.0f)).floatValue();
+        float hoverAmount = this.hoverAnimations.getOrDefault(category, 0.0f).floatValue();
         return this.lerpColor(-7829368, -3355444, hoverAmount);
     }
 

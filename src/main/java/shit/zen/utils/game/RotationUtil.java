@@ -58,7 +58,7 @@ extends ClientBase {
                 targetYaw += (float)((Math.random() - 0.5) / 1.0E8);
                 targetPitch -= (float)(Math.random() / 2.0E8);
             }
-            if ((snapped = (candidate = new Rotation(targetYaw, targetPitch)).snapToSensitivity(Float.valueOf(mc.options.sensitivity().get().floatValue()))) == null) continue;
+            if ((snapped = (candidate = new Rotation(targetYaw, targetPitch)).snapToSensitivity(mc.options.sensitivity().get().floatValue())) == null) continue;
             targetYaw = snapped.getYaw();
             targetPitch = Mth.clamp(snapped.getPitch(), -90.0f, 90.0f);
         }
@@ -167,7 +167,7 @@ extends ClientBase {
     }
 
     public static List<Float> getEyeHeights() {
-        return List.of(Float.valueOf(mc.player.getEyeHeight()));
+        return List.of(mc.player.getEyeHeight());
     }
 
     public static double getMinHitDistance(Entity entity, Rotation rotation) {

@@ -37,7 +37,7 @@ extends SettingComponent {
             this.updateSliderValue(mouseX, sliderX, sliderWidth);
         }
         String name = this.numberSetting.getName();
-        String valueText = this.numberSetting.getStep().doubleValue() % 1.0 == 0.0 ? String.format("%d", new Object[]{this.numberSetting.getValue().intValue()}) : String.format("%.2f", new Object[]{Float.valueOf(this.numberSetting.getValue().floatValue())});
+        String valueText = this.numberSetting.getStep().doubleValue() % 1.0 == 0.0 ? String.format("%d", new Object[]{this.numberSetting.getValue().intValue()}) : String.format("%.2f", new Object[]{this.numberSetting.getValue().floatValue()});
         float textY = (float)rowY + ((float)rowHeight - FontStore.OPENSANS_16.getFontHeight()) / 2.0f;
         FontStore.OPENSANS_16.drawStringWithShadow(poseStack, name, sliderX, textY, textColor);
         FontStore.OPENSANS_16.drawStringWithShadow(poseStack, valueText, (float)(panelX + panelWidth - textPadding) - FontStore.OPENSANS_16.getStringWidth(valueText), textY, textColor);

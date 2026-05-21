@@ -52,7 +52,7 @@ extends SettingElement<NumberSetting> {
             this.isTruncated = true;
         }
         FontStore.AXIFORMA_REGULAR_14.drawString(poseStack, name, this.x + 6.0f, nameY, ColorUtil.withAlpha(-1, alpha * 0.8f));
-        String valueText = String.format("%.2f", new Object[]{Float.valueOf(this.setting.getValue().floatValue())});
+        String valueText = String.format("%.2f", new Object[]{this.setting.getValue().floatValue()});
         FontStore.AXIFORMA_BOLD_13.drawString(poseStack, valueText, this.x + 120.0f - FontStore.AXIFORMA_BOLD_13.getStringWidth(valueText) - 6.0f, nameY, ColorUtil.withAlpha(-1, alpha * 0.92f));
         float progress = this.setting.getValue().floatValue() / this.setting.getMax().floatValue();
         progress = Mth.clamp(progress, 0.0f, 1.0f);

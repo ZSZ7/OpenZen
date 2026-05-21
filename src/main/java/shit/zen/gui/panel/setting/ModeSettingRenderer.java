@@ -32,7 +32,7 @@ implements SettingRenderer {
         }
         this.updateOpenAnimation(modeSetting);
         String[] otherModes = Arrays.stream((Object[])modeSetting.getModes()).filter(mode -> !Objects.equals(mode, modeSetting.getValue())).toArray(String[]::new);
-        float openFactor = this.openAnimations.getOrDefault(modeSetting, Float.valueOf(0.0f)).floatValue();
+        float openFactor = this.openAnimations.getOrDefault(modeSetting, 0.0f).floatValue();
         int itemHeight = Math.round(16.0f * scale);
         int expandedHeight = Math.round((float)(otherModes.length * itemHeight) * openFactor);
         int rowHeight = Math.round(24.0f * scale);
@@ -51,7 +51,7 @@ implements SettingRenderer {
             float selectedX = (float)dropdownX + ((float)dropdownWidth - selectedWidth) / 2.0f;
             float selectedY = (float)dropdownY + (float)itemHeight / 2.0f - valueFont.getMetrics().capHeight() / 2.0f + 2.0f * scale;
             TextGlow.drawGlowText(selectedValue, selectedX, selectedY, valueFont, this.applyAlpha(-3355444, alpha), this.applyAlpha(new Color(255, 255, 255, 150).getRGB(), alpha), 10.0f * scale);
-            float openFactor2 = this.openAnimations.getOrDefault(modeSetting, Float.valueOf(0.0f)).floatValue();
+            float openFactor2 = this.openAnimations.getOrDefault(modeSetting, 0.0f).floatValue();
             if ((double)openFactor2 > 0.01) {
                 this.itemHoverAnimations.putIfAbsent(modeSetting, new HashMap<>());
                 Map<String, Float> hoverMap = this.itemHoverAnimations.get(modeSetting);
@@ -88,10 +88,10 @@ implements SettingRenderer {
     }
 
     private void updateItemHoverAnim(Map<String, Float> hoverMap, String key, boolean hovered) {
-        float current = hoverMap.getOrDefault(key, Float.valueOf(0.0f)).floatValue();
+        float current = hoverMap.getOrDefault(key, 0.0f).floatValue();
         float target = hovered ? 1.0f : 0.0f;
         current = Math.abs(current - target) > 0.01f ? LerpUtil.smoothLerp(current, target, 0.28f) : target;
-        hoverMap.put(key, Float.valueOf(current));
+        hoverMap.put(key, current);
     }
 
     private float lerpFloat(float from, float to, float t) {
@@ -116,11 +116,11 @@ implements SettingRenderer {
 
     private void updateOpenAnimation(ModeSetting modeSetting) {
         boolean open = this.openStates.getOrDefault(modeSetting, false);
-        float current = this.openAnimations.getOrDefault(modeSetting, Float.valueOf(0.0f)).floatValue();
+        float current = this.openAnimations.getOrDefault(modeSetting, 0.0f).floatValue();
         if (open) {
-            this.openAnimations.put(modeSetting, Float.valueOf(LerpUtil.lerp(current, 1.0f, 0.08f)));
+            this.openAnimations.put(modeSetting, LerpUtil.lerp(current, 1.0f, 0.08f));
         } else {
-            this.openAnimations.put(modeSetting, Float.valueOf(LerpUtil.lerp(current, 0.0f, 0.16f)));
+            this.openAnimations.put(modeSetting, LerpUtil.lerp(current, 0.0f, 0.16f));
         }
     }
 
@@ -172,7 +172,7 @@ implements SettingRenderer {
             return Math.round(24.0f * scale);
         }
         String[] otherModes = Arrays.stream((Object[])modeSetting.getModes()).filter(mode -> !Objects.equals(mode, modeSetting.getValue())).toArray(String[]::new);
-        float openFactor = this.openAnimations.getOrDefault(modeSetting, Float.valueOf(0.0f)).floatValue();
+        float openFactor = this.openAnimations.getOrDefault(modeSetting, 0.0f).floatValue();
         int itemHeight = Math.round(16.0f * scale);
         int expandedHeight = Math.round((float)(otherModes.length * itemHeight) * openFactor);
         return Math.round(24.0f * scale) + expandedHeight;

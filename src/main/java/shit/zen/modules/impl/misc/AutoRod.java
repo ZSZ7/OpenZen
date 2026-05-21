@@ -17,7 +17,7 @@ public class AutoRod
 extends Module {
     public static AutoRod INSTANCE;
     private final ModeSetting mouseButton = new ModeSetting("Button", "Middle", "Mouse 4", "Mouse 5").withDefault("Mouse 4");
-    private final NumberSetting delay = new NumberSetting("Delay", Integer.valueOf(2), Integer.valueOf(0), Integer.valueOf(20), Integer.valueOf(1));
+    private final NumberSetting delay = new NumberSetting("Delay", 2, 0, 20, 1);
     private boolean slotSwitched = false;
     private boolean isActive = false;
     private int previousSlot = -1;

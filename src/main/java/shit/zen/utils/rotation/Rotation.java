@@ -25,7 +25,7 @@ public class Rotation {
     public Runnable task;
     @Getter @Setter
     public Runnable postTask;
-    static final boolean Đ = true;
+    static final boolean ASSERTIONS_DISABLED = true;
 
     public Rotation() {
         this.yaw = 0.0f;
@@ -83,7 +83,7 @@ public class Rotation {
         if (Float.isNaN(this.yaw) || Float.isNaN(this.pitch)) {
             return;
         }
-        this.snapToSensitivity(Float.valueOf(ClientBase.mc.options.sensitivity().get().floatValue()));
+        this.snapToSensitivity(ClientBase.mc.options.sensitivity().get().floatValue());
         player.setYRot(this.yaw);
         player.setXRot(this.pitch);
     }
@@ -121,7 +121,7 @@ public class Rotation {
         float stepped = Rotation.moveTowards(current, target, speed + RandomUtils.nextFloat(0.0f, 15.0f));
         double diff = Mth.wrapDegrees(target - current);
         if ((double)(-speed) > diff || diff > (double)speed) {
-            if (!Đ && ClientBase.mc.player == null) {
+            if (!ASSERTIONS_DISABLED && ClientBase.mc.player == null) {
                 throw new AssertionError();
             }
             stepped += (float)((double)RandomUtils.nextFloat(1.0f, 2.0f) * Math.sin((double)ClientBase.mc.player.getXRot() * Math.PI));

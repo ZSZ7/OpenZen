@@ -265,7 +265,7 @@ implements SettingRenderer {
         } else if (numberSetting.getValue() instanceof Long) {
             numberSetting.setValue(Math.round(value));
         } else if (numberSetting.getValue() instanceof Float) {
-            numberSetting.setValue(Float.valueOf((float)value));
+            numberSetting.setValue((float)value);
         } else {
             numberSetting.setValue(value);
         }
@@ -277,7 +277,7 @@ implements SettingRenderer {
         } else if (numberSetting.getValue() instanceof Long) {
             numberSetting.setValue(Math.round(value));
         } else if (numberSetting.getValue() instanceof Float) {
-            numberSetting.setValue(Float.valueOf((float)value));
+            numberSetting.setValue((float)value);
         } else {
             numberSetting.setValue(value);
         }

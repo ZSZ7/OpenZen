@@ -32,9 +32,9 @@ import shit.zen.event.EventTarget;
 public class AutoThrow
 extends Module {
     public static AutoThrow INSTANCE;
-    private final NumberSetting minDistance = new NumberSetting("Min Distance", Integer.valueOf(5), Integer.valueOf(3), Integer.valueOf(30), Integer.valueOf(1));
-    private final NumberSetting maxDistance = new NumberSetting("Max Distance", Integer.valueOf(10), Integer.valueOf(3), Integer.valueOf(30), Integer.valueOf(1));
-    private final NumberSetting throwDelay = new NumberSetting("Delay", Integer.valueOf(500), Integer.valueOf(50), Integer.valueOf(2000), Integer.valueOf(50));
+    private final NumberSetting minDistance = new NumberSetting("Min Distance", 5, 3, 30, 1);
+    private final NumberSetting maxDistance = new NumberSetting("Max Distance", 10, 3, 30, 1);
+    private final NumberSetting throwDelay = new NumberSetting("Delay", 500, 50, 2000, 50);
     private final Timer throwTimer = new Timer();
     public Rotation targetRotation;
     public int ticksUntilThrow;

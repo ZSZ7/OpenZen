@@ -60,7 +60,7 @@ extends ClientBase {
         try {
             Method method = mc.gameRenderer.getClass().getDeclaredMethod(ReflectionUtil.getMappedMethodName(mc.gameRenderer.getClass(), "getFov", "(Lnet/minecraft/client/Camera;FZ)D"), Camera.class, Float.TYPE, Boolean.TYPE);
             method.setAccessible(true);
-            fov = (Double)method.invoke(mc.gameRenderer, new Object[]{mc.getEntityRenderDispatcher().camera, Float.valueOf(partialTicks), true});
+            fov = (Double)method.invoke(mc.gameRenderer, new Object[]{mc.getEntityRenderDispatcher().camera, partialTicks, true});
         } catch (Exception exception) {
             exception.printStackTrace();
         }
