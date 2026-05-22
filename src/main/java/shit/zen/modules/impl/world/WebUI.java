@@ -19,30 +19,25 @@ import shit.zen.settings.impl.NumberSetting;
 import shit.zen.utils.misc.ChatUtil;
 
 public class WebUI extends Module {
-    private final NumberSetting port = new NumberSetting("Port", 8089, 1024, 65535, 1);
-    private final BooleanSetting openBrowser = new BooleanSetting("Open Browser", true);
-
     private HttpServer httpServer;
 
     public WebUI() {
         super("WebUI", Category.WORLD);
+        setEnabled(false);
     }
 
     @Override
     public void onEnable() {
         try {
             this.httpServer = this.createHttpServer();
-            ChatUtil.print("WebUI started at http://127.0.0.1:" + this.port.getValue().intValue());
-            if (this.openBrowser.getValue() && mc.player != null) {
-                try {
-                    System.setProperty("java.awt.headless", "false");
-                    if (Desktop.isDesktopSupported()
-                            && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
-                        Desktop.getDesktop().browse(new URI("http://127.0.0.1:" + this.port.getValue().intValue()));
-                    }
-                } catch (URISyntaxException | IOException ex) {
-                    ChatUtil.print("Failed to open browser: " + ex.getMessage());
+            ChatUtil.print("WebUI started at http://127.0.0.1:8089");
+            try {
+                System.setProperty("java.awt.headless", "false");
+                if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+                    Desktop.getDesktop().browse(new URI("http://127.0.0.1:8089"));
                 }
+            } catch (URISyntaxException | IOException ex) {
+                ChatUtil.print("Failed to open browser: " + ex.getMessage());
             }
         } catch (IOException ioException) {
             ChatUtil.print("Failed to start http server because " + ioException.getMessage());
@@ -61,7 +56,7 @@ public class WebUI extends Module {
     }
 
     private HttpServer createHttpServer() throws IOException {
-        HttpServer server = HttpServer.create(new InetSocketAddress(this.port.getValue().intValue()), 0);
+        HttpServer server = HttpServer.create(new InetSocketAddress(8089), 0);
         server.createContext("/api/modulesList", new ModulesHandler());
         server.createContext("/api/categoriesList", new CategoriesHandler());
         server.createContext("/api/setStatus", new ToggleModuleHandler());
